@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<title>{{ .title }}</title>
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="/formato.css"> -->
+
+  <style type="text/css">
+
+ td{	
+	width: 50px;
+}
+
+.jumbotron{
+
+	margin-top: 70px;
+}
+
+h1{
+	font-family: 'Railway';
+}
+
+.labels{
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Railway';
+}
+
+#activdad{
+	margin-bottom: 50px;
+}
+
+p{
+	margin-top: 15px;
+	font-family: 'Railway';
+
+}
+
+#boton{
+	margin-top: 15px;
+	font-family: 'Railway';
+}
+
+td{
+	font-family: 'Railway';
+}
+  </style>
+
+
+</head>
+<body>
+
+<!-- Template para posicionar el Menu -->
+{{ template "menu.html" . }}
+
+<!--JumboTron-->
+  <div class="container">
+    <div class="jumbotron">
+      <h1><i class="fas fa-cloud"></i>Archivos En La Nube</h1>
+      <p>Muestra de Los Archivos Recientes</p>
+      <a class="btn btn-primary "  id = "boton" href = "/archivo/new" role="button"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Un Archivo</a> 
+    </div>
+   
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 pink">
+
+      	<div class="row">
+				<div class="col-lg-2 "></div>
+				<div class="col-lg-8 ">
+
+					<form action="/posts" method="POST">
+					<table class="table table-condensed">
+
+						<tbody>
+							
+							  <!--Loop over the `payload` variable, which is the list of articles-->
+						  {{range .payload }}
+   							 <!--Create the link for the article based on its ID-->
+
+   							 <tr>
+								<td> <p>{{.ID}}</p> </td>
+								<td>   <strong> <p> {{.Nombre}} </p> </strong> </td>
+								<td> <p>{{.Formato}}</p> </td>
+								<td>  <a class="btn btn-primary "  id = "boton" href = "/article/{{.ID}}" role="button"> Contenido</a> 
+						
+			
+							  </tr>
+						    
+						  {{end}}
+						</tbody>		
+					</table> 
+					</form>
+
+
+				</div>
+				
+			</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+</html>

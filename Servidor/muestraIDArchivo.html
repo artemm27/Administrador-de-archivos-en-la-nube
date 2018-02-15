@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title>Muestra Archivo</title>
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+    .jumbotron{
+
+	margin-top: 70px;
+
+
+}
+h1{
+	font-family: 'Railway';
+}
+
+
+
+p{
+	margin-top: 15px;
+	font-family: 'Railway';
+	font-size: 20px;
+	text-align: justify;
+
+}
+
+#image{
+ 
+    text-align : center;
+}
+
+
+
+#imagen{
+  height: 300px;
+  width: 500px;
+}
+
+
+
+
+</style>
+</head>
+<body>
+
+{{ template "menu.html" . }}
+
+
+<!--JumboTron-->
+  <div class="container">
+    <div class="jumbotron">
+      <h1><i class="fa fa-trophy" aria-hidden="true"></i> Archivo Nombre {{.Title}} </h1>
+      <p><em>Contenido De Tu Actividad.</em></p> 
+    </div>
+  </div>
+  
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-12 pink">
+          
+          <img class="img-responsive img-thumbnail "  id="imagen" alt="Responsive image" src = "<%= posts.imagen%>" </p>
+          <p><strong>Nombre de Actividad: </strong><%= posts.nombreDeActividad%> </p>
+          <p><strong>Lugar: </strong><%= posts.lugar%> </p> 
+          <p><strong>Comentario: </strong><%= posts.comentario%> </p>
+          <div>
+            
+             
+          <form action="/posts/<%= posts._id %>?_method=DELETE" method="POST">
+            <a class="btn btn-warning btn-lg" href="/posts/<%= posts._id%>/edit" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+              <button class="btn btn-DANGER btn-lg "><i class="fa fa-trash-o" aria-hidden="true"></i> Borrar </button>
+          </form>
+          
+            
+            
+          </div>
+          
+      </div>
+    </div>
+  
+  </div>
+
+
+
+</body>
+</html>
