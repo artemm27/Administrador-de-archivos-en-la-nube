@@ -7,7 +7,8 @@ import (
   "fmt"
   "github.com/gin-gonic/gin"
   "strconv"
-  
+  _ "github.com/go-sql-driver/mysql" //my sql driver
+  "database/sql"
 )
 
 
@@ -15,6 +16,13 @@ type archivo struct {
   ID      int    `json:"id"`
   Nombre   string `json:"title"`
   Formato string `json:"content"`
+}
+
+//Función para verificar errores de mySQL
+func checkErr(err error) {
+  if err != nil {
+    panic(err)
+  }
 }
 
 
@@ -77,6 +85,9 @@ func modificarArchivo(articles []archivo ,id int, nombre, formato string ){
 var router *gin.Engine
 
 func main() {
+
+  db, err := sql.Open("mysql", "root:1718@/GoFiles")
+  checkErr(err)
 
   router = gin.Default()
   router.LoadHTMLGlob("templates/*")
@@ -186,6 +197,37 @@ func main() {
             modificarArchivo(articles,id,nombre,formato)
            c.Redirect(302, "/archivos")
         })
+
+
+      router.GET("/", func(c *gin.Context){
+      c.HTML(http.StatusOK, "login.html",gin.H{
+        "title": "Login",
+        },   
+      )
+      fmt.Println("nuevo usuario")
+
+      })
+
+    router.POST("/login", func(c *gin.Context){
+        userName := c.PostForm("uname")
+        password := c.PostForm("psw")
+        fmt.Println("USUARIO")
+        fmt.Println(userName)
+        fmt.Println(password)
+        
+        //insertar en la base de datos
+        stmt, err := db.Prepare("INSERT Users SET UserId=?, Passw=?, UserPath=?") 
+        checkErr(err)
+        res, err := stmt.Exec(userName, password, "/home/GoProj/" + userName)
+        checkErr(err)
+        id, err := res.LastInsertId()
+        checkErr(err)
+        fmt.Println(id)
+
+        c.Redirect(302, "/archivos")
+        //fmt.Println("you have reached post route!")
+
+      })
 
   // trabaja en puerto 8080 por default
   router.Run()
