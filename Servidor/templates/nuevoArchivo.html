@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<title>{{ .title }}</title>
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="/formato.css"> -->
+
+  <style type="text/css">
+
+ td{	
+	width: 50px;
+}
+
+.jumbotron{
+
+	margin-top: 70px;
+}
+
+h1{
+	font-family: 'Railway';
+}
+
+.labels{
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Railway';
+}
+
+#activdad{
+	margin-bottom: 50px;
+}
+
+p{
+	margin-top: 15px;
+	font-family: 'Railway';
+
+}
+
+#boton{
+	margin-top: 15px;
+	font-family: 'Railway';
+}
+
+td{
+	font-family: 'Railway';
+}
+  </style>
+
+
+</head>
+<body>
+
+<!-- Template para posicionar el Menu -->
+{{ template "menu.html" . }}
+
+<!--JumboTron-->
+  <div class="container">
+    <div class="jumbotron">
+      <h1><i class="fas fa-cloud-upload-alt"></i> Subir Archivo</h1>
+      
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 pink">
+
+      	<div class="row">
+				<div class="col-lg-2 "></div>
+				<div class="col-lg-8 ">
+
+					<form action="/create" method="POST">
+
+						<div>
+							<label class="labels" for="id">ID</label>
+							<input type="text" id="actividad" class="form-control "  required name="ID" value="{{ .texto }}">
+
+							<label class="labels" for="id">Nombre Del Archivo</label>
+							<input type="text" id="actividad" class="form-control "  required name="Nombre" value="{{ .texto }}">
+
+							<label class="labels" for="id">Formato Del Archivo</label>
+							<input type="text" id="actividad" class="form-control "  required name="Formato" value="{{ .texto }}">
+
+							<div>
+							   <label class="labels" for="file">Seleccionar Archivo</label>
+							   <input type="file" id="file" name="file" multiple>
+							</div>								
+						</div>
+									
+
+						<div id="boton">
+						<a class="btn btn-primary "  href = "/posts/<%= esteDia %>" role="button"> Regresar</a>
+						<input type="submit" class="btn btn-primary" value="Subir Archivo">
+							
+						</div>
+				
+					</form>
+
+
+				</div>
+				
+			</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+</html>

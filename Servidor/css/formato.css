@@ -1,0 +1,38 @@
+td{
+	
+	width: 50px;
+}
+
+.jumbotron{
+
+	margin-top: 70px;
+
+
+}
+h1{
+	font-family: 'Railway';
+}
+.labels{
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Railway';
+}
+
+#activdad{
+	margin-bottom: 50px;
+}
+
+p{
+	margin-top: 15px;
+	font-family: 'Railway';
+
+}
+
+#boton{
+	margin-top: 15px;
+	font-family: 'Railway';
+}
+
+td{
+	font-family: 'Railway';
+}
